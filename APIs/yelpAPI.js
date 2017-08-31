@@ -9,30 +9,23 @@ const apiCall = function(searchQuery){
 	const clientSecret = "DyinsiGY2ZbAA2Y3GeGQfZP4nKh41hwtPvUUB0Y7c9IpMrrcJWs6bTNhQtWrfkGZ";
 
 	const searchRequest = {
- 	// term:'Four Barrel Coffee',
- 	location: 'denver, co',
- 	limit: 2
-	};
+/*	latitude = locationObject.lat,
+	longitude = locationObject.lng,*/
+ 	location: "denver, co" + /*locationSearch*/ + "",
+ 	limit: 10,
+ 	categories: "" + /*categorySelection*/ + "",
+ 	term: "" + /*findField*/ + ""
 
+ 	};
 
 	yelp.accessToken(clientId, clientSecret).then(response => {
 
 		const client = yelp.client(response.jsonBody.access_token);
 
 		client.search(searchRequest).then(response => {
-			// for loop that console.logs the first 10 responces
-			// find another way of doing this ---- send back the whole responce instead
-			// it'll be better for giving back results
-			// for (var i=0; i < response.jsonBody.businesses.length; i++) {
+
 				console.log(response.jsonBody.businesses);
-		    	// const firstResult = response.jsonBody.businesses[0];
-		    	// const prettyJson = JSON.stringify(firstResult, null, 5);
-		    	// console.log(prettyJson);
-		    	// searchResults.push({prettyJson})
-		    // };	
-		    // console.log("all results: " + searchResults[1]);
-	  	});
-	  	
+	  	});	  	
 	}).catch(e => {
   		console.log(e);
 	});
